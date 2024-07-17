@@ -1,8 +1,8 @@
 import { Injectable, Req } from '@nestjs/common';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Request } from 'express';
-import { AuthService } from './auth/auth.service';
-import { SupabaseService } from './supabase/supabase.service';
+import { AuthService } from '../auth/auth.service';
+import { SupabaseService } from '../supabase/supabase.service';
 
 @Injectable()
 export class TestGridService {

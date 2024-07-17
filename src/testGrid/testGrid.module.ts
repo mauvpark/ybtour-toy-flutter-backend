@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { TestGridController } from './testGrid/testGrid.controller';
-import { TestGridService } from './testGrid/testGrid.service';
+import { TestGridController } from './testGrid.controller';
+import { TestGridService } from './testGrid.service';
 
 @Module({
   controllers: [TestGridController],
