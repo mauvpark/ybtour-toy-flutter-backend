@@ -7,7 +7,7 @@ import {
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Request } from 'express';
 import { SupabaseService } from '../supabase/supabase.service';
-import { AuthSignUpDto } from 'src/auth/model/dto/signUp.dto';
+import { AuthSignUpDto } from './model/dto/signUp.dto';
 
 @Injectable()
 export class AuthService {
