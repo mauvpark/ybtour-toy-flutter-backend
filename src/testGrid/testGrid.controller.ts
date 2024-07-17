@@ -1,7 +1,9 @@
 import { Controller, Delete, Get, Patch, Post, Req } from '@nestjs/common';
 import { Request } from 'express';
 import { TestGridService } from './testGrid.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('TestGrid')
 @Controller('testGrid')
 export class TestGridController {
   constructor(private testGridService: TestGridService) {}

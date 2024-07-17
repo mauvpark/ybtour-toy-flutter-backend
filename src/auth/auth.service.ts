@@ -7,6 +7,7 @@ import {
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Request } from 'express';
 import { SupabaseService } from '../supabase/supabase.service';
+import { AuthSignUpDto } from 'src/auth/model/dto/signUp.dto';
 
 @Injectable()
 export class AuthService {
@@ -14,9 +15,9 @@ export class AuthService {
   constructor(private supabaseService: SupabaseService) {
     this.supabase = this.supabaseService.getSupabase();
   }
-  async signUp(@Req() req: Request) {
+  async signUp(signUpDto: AuthSignUpDto) {
     try {
-      const { email, password }: { email: string; password: string } = req.body;
+      const { email, password } = signUpDto;
       if (!email || !password) {
         throw new BadRequestException();
       }
