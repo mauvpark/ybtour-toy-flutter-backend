@@ -1,6 +1,6 @@
 import { Controller, Delete, Get, Patch, Post, Req } from '@nestjs/common';
 import { Request } from 'express';
-import { TestGridService } from 'src/testGrid/testGrid.service';
+import { TestGridService } from './testGrid/testGrid.service';
 
 @Controller('testGrid')
 export class TestGridController {

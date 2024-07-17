@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Request } from 'express';
-import { SupabaseService } from 'src/supabase/supabase.service';
+import { SupabaseService } from './supabase/supabase.service';
 
 @Injectable()
 export class AuthService {
