@@ -1,12 +1,12 @@
 import {
   BadRequestException,
   Injectable,
-  Req,
   UnauthorizedException,
 } from '@nestjs/common';
 import { SupabaseClient } from '@supabase/supabase-js';
-import { Request } from 'express';
 import { SupabaseService } from '../supabase/supabase.service';
+import { AuthAuthorizationDto } from './model/dto/authorization.dto';
+import { AuthSignInDto } from './model/dto/signIn.dto';
 import { AuthSignUpDto } from './model/dto/signUp.dto';
 
 @Injectable()
@@ -31,9 +31,10 @@ export class AuthService {
     }
   }
 
-  async signIn(@Req() req: Request) {
+  async signIn(signInDto: AuthSignInDto) {
     try {
-      const { email, password }: { email: string; password: string } = req.body;
+      const { email, password }: { email: string; password: string } =
+        signInDto;
       if (!email || !password) {
         throw new BadRequestException();
       }
@@ -62,8 +63,8 @@ export class AuthService {
   /**
    * 유저 토큰 검증
    */
-  async validateUser(req: Request) {
-    const AUTHORIZATION = req.headers.authorization;
+  async validateUser(authorizationDto: AuthAuthorizationDto) {
+    const AUTHORIZATION = authorizationDto.Authorization;
     if (!AUTHORIZATION) {
       throw new UnauthorizedException();
     }

@@ -1,0 +1,26 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Swagger Login</title>
+  </head>
+  <body
+    style='height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;'
+  >
+    <h1>Login</h1>
+    <form
+      id='loginForm'
+      action='/swagger/proxy'
+      method='post'
+      style='display:flex;flex-direction:column;gap:0.5rem;'
+    >
+      <label>아이디:
+        <input name='id' type='text' />
+      </label>
+      <label>비밀번호:
+        <input name='password' type='password' />
+      </label>
+      <button type='submit'>접속하기</button>
+    </form>
+  </body>
+</html>

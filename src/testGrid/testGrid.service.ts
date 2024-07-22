@@ -1,8 +1,11 @@
-import { Injectable, Req } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { SupabaseClient } from '@supabase/supabase-js';
-import { Request } from 'express';
 import { AuthService } from '../auth/auth.service';
+import { AuthAuthorizationDto } from '../auth/model/dto/authorization.dto';
 import { SupabaseService } from '../supabase/supabase.service';
+import { TestGridDeleteDto } from './model/dto/delete.dto';
+import { TestGridInsertDto } from './model/dto/insert.dto';
+import { TestGridUpdateDto } from './model/dto/update.dto';
 
 @Injectable()
 export class TestGridService {
@@ -14,9 +17,9 @@ export class TestGridService {
     this.supabase = this.supabaseService.getSupabase();
   }
 
-  async fetch(req: Request) {
+  async fetch(authorizationDto: AuthAuthorizationDto) {
     // 토큰 유효성 검증
-    await this.authService.validateUser(req);
+    await this.authService.validateUser(authorizationDto);
 
     // 데이터베이스 핸들링
     const { status, statusText, data, error } = await this.supabase
@@ -28,12 +31,15 @@ export class TestGridService {
     return { status, statusText, data };
   }
 
-  async insert(@Req() req: Request) {
+  async insert(
+    authorizationDto: AuthAuthorizationDto,
+    insertDto: TestGridInsertDto,
+  ) {
     // 토큰 유효성 검증
-    await this.authService.validateUser(req);
+    await this.authService.validateUser(authorizationDto);
 
     // 데이터베이스 핸들링
-    const value = req.body;
+    const value = insertDto.value;
     const { status, statusText, error } = await this.supabase
       .from('grid')
       .insert({ value });
@@ -43,12 +49,15 @@ export class TestGridService {
     return { status, statusText };
   }
 
-  async update(@Req() req: Request) {
+  async update(
+    authorizationDto: AuthAuthorizationDto,
+    updateDto: TestGridUpdateDto,
+  ) {
     // 토큰 유효성 검증
-    await this.authService.validateUser(req);
+    await this.authService.validateUser(authorizationDto);
 
     // 데이터베이스 핸들링
-    const { id, value } = req.body;
+    const { id, value } = updateDto;
     const { status, statusText, error } = await this.supabase
       .from('grid')
       .update({ value })
@@ -59,12 +68,15 @@ export class TestGridService {
     return { status, statusText };
   }
 
-  async delete(@Req() req: Request) {
+  async delete(
+    authorizationDto: AuthAuthorizationDto,
+    deleteDto: TestGridDeleteDto,
+  ) {
     // 토큰 유효성 검증
-    await this.authService.validateUser(req);
+    await this.authService.validateUser(authorizationDto);
 
     // 데이터베이스 핸들링
-    const { id } = req.body;
+    const { id } = deleteDto;
     const { status, statusText, error } = await this.supabase
       .from('grid')
       .delete()
