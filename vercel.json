@@ -8,7 +8,8 @@
       "use": "@vercel/node"
     },
     {
-      "src": "views/**/*.hbs"
+      "src": "views/**/*.hbs",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
