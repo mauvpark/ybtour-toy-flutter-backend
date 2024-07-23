@@ -5,7 +5,8 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as hbs from 'hbs';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const hbs = require('hbs');
 import { SWAGGER_URL } from '../constant';
 import path from 'path';
 
