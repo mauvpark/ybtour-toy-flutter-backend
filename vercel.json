@@ -1,6 +1,16 @@
 {
-  "version": 2,
   "buildCommand": "nest build",
+  "framework": null,
+  "installCommand": "npm install",
+  "builds": [
+    {
+      "src": "src/main.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "views/**/*.hbs"
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",
