@@ -10,7 +10,7 @@ import { SWAGGER_URL } from '../constant';
 
 function swaggerConfig(app: NestFastifyApplication) {
   // hbs
-  app.setViewEngine({ engine: { handlebars: hbs }, root: './views' });
+  app.setViewEngine({ engine: { handlebars: hbs }, root: '../views' });
   // bearer auth
   const config = new DocumentBuilder()
     .addBearerAuth(
