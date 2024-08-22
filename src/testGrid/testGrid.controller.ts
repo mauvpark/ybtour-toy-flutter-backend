@@ -20,13 +20,15 @@ import { TestGridService } from './testGrid.service';
 export class TestGridController {
   constructor(private testGridService: TestGridService) {}
 
-  @ApiOperation({ description: '데이터베이스 GET TEST API' })
+  @ApiOperation({
+    description: '데이터베이스 GET TEST API',
+    summary: '데이터베이스 GET TEST API',
+  })
   @Get('/fetch')
   async fetch(
     @Headers()
     authorizationDto: AuthAuthorizationDto,
   ) {
-    console.log('header', authorizationDto);
     try {
       return await this.testGridService.fetch(authorizationDto);
     } catch (error) {
@@ -34,6 +36,10 @@ export class TestGridController {
     }
   }
 
+  @ApiOperation({
+    description: '데이터베이스 POST TEST API',
+    summary: '데이터베이스 POST TEST API',
+  })
   @Post('/insert')
   async insert(
     @Headers() authorizationDto: AuthAuthorizationDto,
@@ -46,6 +52,10 @@ export class TestGridController {
     }
   }
 
+  @ApiOperation({
+    description: '데이터베이스 UPDATE TEST API',
+    summary: '데이터베이스 UPDATE TEST API',
+  })
   @Patch('/update')
   async update(
     @Headers() authorizationDto: AuthAuthorizationDto,
@@ -58,6 +68,10 @@ export class TestGridController {
     }
   }
 
+  @ApiOperation({
+    description: '데이터베이스 DELETE TEST API',
+    summary: '데이터베이스 DELETE TEST API',
+  })
   @Delete('/delete')
   async delete(
     @Headers() authorizationDto: AuthAuthorizationDto,
